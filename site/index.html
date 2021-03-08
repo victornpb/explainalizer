@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Explainalizer</title>
+    <style>
+        html,body{
+            background: #202124;
+            color: white;
+        }
+        #selected-node{
+            font-family: monospace, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <textarea id="input"></textarea>
+        <button style="margin:0 0 0 24px;" id="button">Update</button>
+    </div>
+<div style="padding: 20px; border: 1px solid black; background: #292A2D;">
+    <canvas id="root"></canvas>
+</div>
+
+<div>
+    <div id="selected-node-hint"></div>
+    <pre id="selected-node"></pre>
+</div>
+<script src="index.min.js"></script>
+</body>
+</html>
