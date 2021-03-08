@@ -5,9 +5,9 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 
 export default {
-    input: './site/src/index.js',
+    input: './docs/src/index.js',
     output: {
-        file: './site/index.min.js',
+        file: './docs/index.min.js',
         format: 'iife',
         name: 'bundle'
     },
