@@ -64,9 +64,6 @@ const scanNodes = {
         link: 'https://pganalyze.com/docs/explain/scan-nodes/work-table-scan',
         text: `Scans the work table used in evaluating a recursive common table expression.`,
     },
-
-    // Join Nodes
-    
 };
 
 export default scanNodes;

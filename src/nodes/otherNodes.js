@@ -7,10 +7,6 @@ const otherNodes = {
         text: `Generate the concatenation of the results of sub-plans. For example, this can be used for a UNION ALL query.`,
         link: 'https://pganalyze.com/docs/explain/other-nodes/append',
     },
-    'Append': {
-        text: `Generate the concatenation of the results of sub-plans. For example, this can be used for a UNION ALL query.`,
-        link: 'https://pganalyze.com/docs/explain/other-nodes/append',
-    },
     'Bitmap And': {
         text: `Generate a bitmap of the intersection of two physical row location bitmaps (that is, only locations that occur in both bitmaps). The bitmaps can come from Bitmap Index Scans or other BitmapOr or BitmapAnd child nodes.`,
         link: 'https://pganalyze.com/docs/explain/other-nodes/bitmap-and',

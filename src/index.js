@@ -1,6 +1,6 @@
 import FlameChart from './flameChart.js';
 // import { generateRandomTree } from './../../src/test-data.js';
-import docs from './nodes/scanNodes.js';
+import docs from './nodes';
 import colors from './colors.js';
 import example from './example.js';
 import S from 'tiny-dedent';
@@ -121,7 +121,7 @@ window.onload = () => {
     });
 
     window.addEventListener('resize', renderChart);
-
+  
 
     formInput.addEventListener('submit', (e)=>{
         e.preventDefault();
