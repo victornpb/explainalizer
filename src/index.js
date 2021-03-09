@@ -56,13 +56,13 @@ window.onload = () => {
         const newTree = mapTree(obj, c => c && c.Plans || (c.Plan ? [c.Plan] : null), (item, children, parent, level) => {
 
             if (seq[level] === undefined) {
-                seq[level] = 0;
+                seq[level] = seq[level-1] || 0;
             }
 
             const node = {
                 name: item['Node Type'],
                 start: seq[level],
-                duration: item['Actual Total Time'] || item['Total Cost'] || -10,
+                duration: item['Actual Total Time'] || item['Total Cost'],
                 type: item['Node Type'],
                 textColor: '#ffffff',
                 children: children,
