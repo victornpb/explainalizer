@@ -3,7 +3,7 @@ import FlameChart from './flameChart.js';
 import docs from './nodes/scanNodes.js';
 import colors from './colors.js';
 import example from './example.js';
-
+import S from 'tiny-dedent';
 window.onload = () => {
 
     function renderChart() {
@@ -83,8 +83,9 @@ window.onload = () => {
     }
 
     const canvas = document.getElementById('root');
+    const formInput = document.getElementById('form');
     const inputField = document.getElementById('input');
-    const updateButton = document.getElementById('button');
+    
     const inspectorDiv = document.getElementById('selected-node');
     const inpectorHintDiv = document.getElementById('selected-node-hint');
 
@@ -93,8 +94,6 @@ window.onload = () => {
 
     canvas.width = window.innerWidth - 40;
     canvas.height = window.innerHeight / 2;
-
-    // canvas.style.background = '#292A2D';
 
     const flameChart = new FlameChart({
         canvas,
@@ -122,9 +121,14 @@ window.onload = () => {
     });
 
     window.addEventListener('resize', renderChart);
-    updateButton.addEventListener('click', renderChart);
 
-    requestAnimationFrame(renderChart);
+
+    formInput.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        renderChart();
+    });
+
+    // requestAnimationFrame(renderChart);
 };
 
 function generateDoc(node) {
@@ -132,10 +136,14 @@ function generateDoc(node) {
     const doc = docs[type];
 
     if(doc) {
-        return `
-            <a href='${doc.link}' target="_blank">${type}</a>
-            <quote>${doc.text}</quote>
-        `;
+        return S(`
+            <div>
+                <div class="text-sm text-indigo-500 font-semibold hover:underline"> <a href='${doc.link}' target="_blank">${type}</a></div>
+                <p class="text-gray-500"><quote>${doc.text}</quote></p>
+            </div>`);
     }
-    return `No info about this node type.`;
+    return S(`
+        <div class="">
+            No information about this type of node
+        </div>`);
 }

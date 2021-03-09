@@ -1,31 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <title>Explainalizer</title>
+    <link href="tailwind.min.css" rel="stylesheet">
     <style>
-        html,body{
+        html,
+        body {
             background: #202124;
             color: white;
         }
-        #selected-node{
+
+        #selected-node {
             font-family: monospace, monospace;
         }
     </style>
 </head>
-<body>
-    <div>
-        <textarea id="input"></textarea>
-        <button style="margin:0 0 0 24px;" id="button">Update</button>
-    </div>
-<div style="padding: 20px; border: 1px solid black; background: #292A2D;">
-    <canvas id="root"></canvas>
-</div>
 
-<div>
-    <div id="selected-node-hint"></div>
-    <pre id="selected-node"></pre>
-</div>
-<script src="index.min.js"></script>
+<body class="text-gray-900">
+
+    <div class="max-w-md mx-auto bg-white rounded-sm shadow-md overflow-hidden md:max-w-2xl">
+            <form id="form" class="md:flex">
+                <textarea id="input"
+                    class="w-full px-3 py-2 text-gray-400 bg-gray-800 rounded-sm"></textarea>
+                <button id="button"
+                    class="bg-blue-600 text-gray-200 rounded-sm hover:bg-blue-500 px-4 py-2">
+                    Visualize
+                </button>
+            </form>
+    </div>
+
+    <div class="m-1 border border-gray-600" style="background: #292A2D;">
+        <canvas id="root"></canvas>
+    </div>
+
+    <div class="flex flex-wrap box-border text-white">
+        <div class="w-full md:w-2/3 lg:w-3/4">
+            <pre id="selected-node" class="m-1 p-4 text-sm text-grey-dark flex">
+        <!-- JSON  -->
+       </pre>
+        </div>
+
+        <div class="w-full md:w-1/3 lg:w-1/4">
+            <div id="selected-node-hint"
+                class="m-1 p-4 rounded-sm shadow-md text-sm text-grey-dark flex items-center justify-center">
+                <!-- Info -->
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="index.min.js"></script>
 </body>
+
 </html>
