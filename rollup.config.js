@@ -5,7 +5,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 
 export default {
-    input: './docs/src/index.js',
+    input: './src/index.js',
     output: {
         file: './docs/index.min.js',
         format: 'iife',
