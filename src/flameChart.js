@@ -410,7 +410,7 @@ class FlameChart extends EventEmitter {
         this.timestamps.slice()
             .sort((a, b) => a.timestamp - b.timestamp)
             .reduce((prevEnding, node) => {
-                const { timestamp, color, shortName } = node;
+                const { timestamp, color, textColor, shortName } = node;
                 const { width } = this.ctx.measureText(shortName);
                 const fullWidth = width + this.blockPadding * 2;
                 const position = this.timeToPosition(timestamp);
@@ -426,7 +426,7 @@ class FlameChart extends EventEmitter {
                 this.ctx.fillStyle = color;
                 this.ctx.fillRect(blockPosition, this.charHeight, fullWidth, this.charHeight + this.blockPadding);
 
-                this.ctx.fillStyle = this.timestampColor || 'black';
+                this.ctx.fillStyle = textColor || 'black';
                 this.ctx.fillText(shortName, blockPosition + this.blockPadding, this.charHeight * 2);
 
                 return blockPosition + fullWidth;

@@ -18,13 +18,15 @@ window.onload = () => {
                 shortName: 'START',
                 fullName: 'START',
                 timestamp: 0,
-                color: '#d7c44c'
+                color: '#d7c44c',
+                textColor: '#000000',
             },
             {
                 shortName: 'END',
                 fullName: 'END',
                 timestamp: flameTree[0].duration,
-                color: '#d7c44c'
+                color: '#d7c44c',
+                textColor: '#000000',
             },
         ]
 
