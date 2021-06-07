@@ -189,24 +189,36 @@ class FlameChart extends EventEmitter {
     handleMouseWheel(e) {
         const { deltaY, deltaX } = e;
         e.preventDefault();
+        const c = true;
 
-        const realView = this.calcRealView();
-        const positionScrollDelta = deltaX / this.zoom;
-        let zoomDelta = (deltaY / 1000) * this.zoom;
-
-        this.tryToChangePosition(positionScrollDelta);
-
-        zoomDelta = this.zoom - zoomDelta >= this.initialZoom ? zoomDelta : this.zoom - this.initialZoom
-
-        if (zoomDelta !== 0) {
-            const proportion = this.mouse.x / this.width;
-            const timeDelta = realView - (this.width / (this.zoom - zoomDelta));
-            const positionDelta = timeDelta * proportion;
-
-            this.zoom -= zoomDelta;
-
-            this.tryToChangePosition(positionDelta);
+        if (e.ctrlKey){
+            var s = Math.exp(-e.deltaY/100);
+            this.zoom *= s;
+           
+        } else {
+            this.moveActive = true;
+            var direction = natural ? -1 : 1;
+            this.tryToChangePosition( e.deltaX * direction);
+            this.positionY += e.deltaY * direction;
         }
+
+        // const realView = this.calcRealView();
+        // const positionScrollDelta = deltaX / this.zoom;
+        // let zoomDelta = (deltaY / 1000) * this.zoom;
+
+        // this.tryToChangePosition(positionScrollDelta);
+
+        // zoomDelta = this.zoom - zoomDelta >= this.initialZoom ? zoomDelta : this.zoom - this.initialZoom
+
+        // if (zoomDelta !== 0) {
+        //     const proportion = this.mouse.x / this.width;
+        //     const timeDelta = realView - (this.width / (this.zoom - zoomDelta));
+        //     const positionDelta = timeDelta * proportion;
+
+        //     // this.zoom -= zoomDelta;
+
+        //     this.tryToChangePosition(positionDelta);
+        // }
 
         this.render();
     }

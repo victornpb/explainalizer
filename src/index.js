@@ -7,6 +7,7 @@ import S from 'tiny-dedent';
 window.onload = () => {
 
     function renderChart() {
+        console.log('renderChart');
 
         const json = JSON.parse(inputField.value);
 
@@ -82,8 +83,10 @@ window.onload = () => {
         return newTree;
     }
 
+    const insertModal = document.getElementById('insertModal');
+
     const canvas = document.getElementById('root');
-    const formInput = document.getElementById('form');
+    const formInput = document.querySelector('.insertModal form');
     const inputField = document.getElementById('input');
     
     const inspectorDiv = document.getElementById('selected-node');
@@ -123,9 +126,13 @@ window.onload = () => {
     window.addEventListener('resize', renderChart);
   
 
-    formInput.addEventListener('submit', (e)=>{
+    formInput.addEventListener('submit', (e) => {
+        console.log('submit');
+        insertModal.style.display = "none";
         e.preventDefault();
+        
         renderChart();
+        setTimeout(()=>renderChart(), 500);
     });
 
     // requestAnimationFrame(renderChart);
