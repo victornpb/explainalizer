@@ -5,7 +5,6 @@ const DEFAULT_NODE_HEIGHT = 24;
 const ALPHA = 0.7;
 const DEFAULT_FONT = `12px`;
 
-const natural = true;
 
 const defaultColor = Color.hsl(180, 30, 70);
 
@@ -193,34 +192,32 @@ class FlameChart extends EventEmitter {
         e.preventDefault();
         const c = true;
 
-        if (e.ctrlKey){
-            var s = Math.exp(-e.deltaY/100);
-            this.zoom *= s;
+        if (e.ctrlKey || e.shiftKey || e.metaKey) {
+            console.log('Zoom', e);
+
+            // trackpad zoom
+            if (e.deltaY) {
+                var s = Math.exp(-e.deltaY/100);
+                this.zoom *= s;
+            }
+            // mouse wheel zoom
+            else if (e.deltaX) {
+                var natural = e.webkitDirectionInvertedFromDevice;
+                var direction = natural ? -1 : 1;
+                var s = Math.exp(-e.deltaX/100);
+                this.zoom *= s * direction;
+            }
            
         } else {
+            console.log('Pan');
             this.moveActive = true;
+            var natural = e.webkitDirectionInvertedFromDevice;
             var direction = natural ? -1 : 1;
             this.tryToChangePosition( e.deltaX * direction);
             this.positionY += e.deltaY * direction;
         }
 
-        // const realView = this.calcRealView();
-        // const positionScrollDelta = deltaX / this.zoom;
-        // let zoomDelta = (deltaY / 1000) * this.zoom;
-
-        // this.tryToChangePosition(positionScrollDelta);
-
-        // zoomDelta = this.zoom - zoomDelta >= this.initialZoom ? zoomDelta : this.zoom - this.initialZoom
-
-        // if (zoomDelta !== 0) {
-        //     const proportion = this.mouse.x / this.width;
-        //     const timeDelta = realView - (this.width / (this.zoom - zoomDelta));
-        //     const positionDelta = timeDelta * proportion;
-
-        //     // this.zoom -= zoomDelta;
-
-        //     this.tryToChangePosition(positionDelta);
-        // }
+        
 
         this.render();
     }
