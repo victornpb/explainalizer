@@ -5,6 +5,8 @@ const DEFAULT_NODE_HEIGHT = 24;
 const ALPHA = 0.7;
 const DEFAULT_FONT = `12px`;
 
+const natural = true;
+
 const defaultColor = Color.hsl(180, 30, 70);
 
 const walk = (treeList, cb, level = 0) => {
